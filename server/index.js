@@ -40,6 +40,17 @@ app.post('/create', (req, res) => {
     })
 })
 
+app.put('/update/:id', (req, res) =>{
+    const sql = "update user_tbl set fname = ?, lname = ?, mobile = ?, nic = ? where id = ?";
+    const values = [
+        req.body.fname,
+        req.body.lname,
+        req.body.mobile,
+        req.body.nic
+    ]
+    const id = req.params.id;
+})
+
 app.listen(3030, ()=> {
     console.log("Server is Running")
 })

@@ -49,7 +49,26 @@ app.put('/update/:id', (req, res) =>{
         req.body.nic
     ]
     const id = req.params.id;
+    db.query(sql, [...values, id], (err, data) => {
+        if(err){
+            return res.json({Error: "ERROR"})
+        }
+        return res.json(data)
+    })
 })
+
+app.delete('/delete/:id', (req, res) => {
+    const sql = "delete from user_tbl where id = ?";
+    const id = req.params.id;
+    db.query(sql, [id] , (err, data) => {
+        if(err){
+            return res.json({Error: "ERROR"})
+        }
+        return res.json(data)
+    })
+})
+
+
 
 app.listen(3030, ()=> {
     console.log("Server is Running")
